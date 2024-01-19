@@ -10,9 +10,13 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Post {
+
+model Products {
     id        Int      @id @default(autoincrement())
     name      String
+    description String
+    imageUrl String
+    category String
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
