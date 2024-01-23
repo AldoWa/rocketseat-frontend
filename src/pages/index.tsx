@@ -5,12 +5,16 @@ import { Pagination } from "@/components/Pagination";
 import { Card } from "@/components/Card";
 import { api } from "@/utils/api";
 import { useState } from "react";
+import useQueryParams from "@/hooks/useQueryParams";
 
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
+  const { productActive } = useQueryParams();
+
   const { data } = api.products.getAll.useQuery({
-    page: currentPage
+    page: currentPage,
+    productType: productActive ? productActive : undefined,
   });
 
   const handleChangePage = (page: number) => {
