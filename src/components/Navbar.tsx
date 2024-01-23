@@ -8,7 +8,6 @@ const inactiveLinkClass = "text-base font-normal text-[#737380] cursor-pointe"
 
 export const Navbar = () => {
   const { pathName, productActive, typeActive } = useQueryParams()
-
   return (
     <nav className="flex items-center justify-between">
       <div className="flex items-center	gap-x-10">

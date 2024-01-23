@@ -13,6 +13,10 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
+    id: {
+      description: 'Identificador do produto',
+      defaultValue: 1,
+    },
     imageUrl: {
       defaultValue: '/cup.png',
     }
@@ -24,6 +28,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Principal: Story = {
   args: {
+    id: 1,
     imageUrl: '/cup.png',
     name: 'Caneca de cerâmica rústica',
     price: 'R$ 49,90',

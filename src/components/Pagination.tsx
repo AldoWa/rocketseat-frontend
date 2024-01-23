@@ -2,7 +2,7 @@
 // Current Page = 1
 import Image from "next/image";
 import Arrow from "../../public/arrow.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const btn = (isActive: boolean) =>
   `w-8 h-8 ${isActive ? "border border-[#FFA585] bg-white text-[#FFA585]" : "bg-[#E9E9F0] text-[#41414D]"} rounded-lg text-base ${isActive ? "font-semibold" : "font-normal"}  cursor-pointer`;
@@ -15,6 +15,10 @@ interface PaginationProps {
 
 export const Pagination = ({ totalPages, currentPage, onPageChange }: PaginationProps) => {
   const [actualPage, setActualPage] = useState(currentPage);
+
+  useEffect(() => {
+    setActualPage(currentPage);
+  }, [currentPage])
 
   const generatePages = () => {
     const pages = [];
