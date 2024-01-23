@@ -10,11 +10,12 @@ import useQueryParams from "@/hooks/useQueryParams";
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
-  const { productActive } = useQueryParams();
+  const { productActive, typeActive } = useQueryParams();
 
   const { data } = api.products.getAll.useQuery({
     page: currentPage,
     productType: productActive ? productActive : undefined,
+    sortBy: typeActive ? typeActive : undefined,
   });
 
   const handleChangePage = (page: number) => {

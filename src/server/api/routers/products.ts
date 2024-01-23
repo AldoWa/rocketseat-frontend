@@ -11,21 +11,33 @@ const getWhereType = (productType: string): Prisma.ProductsWhereInput => {
   }
 }
 
+const getOrderBy = (sortBy: string): Prisma.ProductsOrderByWithRelationInput => {
+  if(sortBy === 'news') {
+    return {
+      createdAt: 'desc'
+    }
+  }
+  return {}
+}
+
 export const productsRouter = createTRPCRouter({
   getAll: publicProcedure
-    .input(z.object({ page: z.number().optional().default(1), productType: z.string().optional().default('all') }))
-    .query(async ({ ctx, input: { page, productType } }) => {
+    .input(z.object({ page: z.number().optional().default(1), productType: z.string().optional().default('all'), sortBy: z.string().optional().default('') }))
+    .query(async ({ ctx, input: { page, productType, sortBy } }) => {
       const offSet = 15
       const where = getWhereType(productType)
+      const orderBy = getOrderBy(sortBy)
 
       const allProducts = await ctx.db.products.findMany({
         skip: page === 1 ?  page - 1 : (offSet * page) - offSet,
         take: offSet,
-        where
+        where,
+        orderBy
       })
 
       const count = await ctx.db.products.count({
-        where
+        where,
+        orderBy
       })
      
       return {
