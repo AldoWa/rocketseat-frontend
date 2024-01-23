@@ -10,7 +10,7 @@ const fontDefault = (isActive: boolean) => `font-normal text-sm ${isActive ? 'te
 export const DropDown = () => {
   const [opened, setOpened] = useState(false);
   const { pathName, productActive, typeActive } = useQueryParams();
-  console.log(typeActive)
+
   return (
     <div className="relative flex	flex-col items-end">
       <button
@@ -35,7 +35,7 @@ export const DropDown = () => {
         id="menu"
         aria-hidden={!opened}
         aria-labelledby="menubutton"
-        className={`"shadow-[0_4px_12px_0_#0000001A]] max-w-44 rounded bg-white px-4 py-3 ${opened ? "" : "hidden"} absolute top-8 w-44	`}
+        className={`"shadow-[0_4px_12px_0_#0000001A]] max-w-44 rounded bg-white px-4 py-3 ${opened ? "" : "hidden"} absolute top-8 w-44 z-10`}
       >
         <li className={fontDefault(typeActive === "news")}>
           <Link

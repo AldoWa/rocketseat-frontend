@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { usePathname, useSearchParams } from "next/navigation"
 import { DropDown } from "./Dropdown"
 import { generateLink } from "@/utils/generateLink"
 import useQueryParams from "@/hooks/useQueryParams"
