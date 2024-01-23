@@ -50,8 +50,6 @@ export const Header = () => {
           </Link>
         </div>
       </header>
-
-      <Navbar></Navbar>
     </div>
   );
 };

@@ -4,5 +4,6 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: rgba(rgba(149, 149, 149, 0.1));
+  background-color: rgba(149, 149, 149, 0.1);
+  height: 100%;
 }
