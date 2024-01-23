@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import Cart from "../../public/cart.svg";
 import Search from "../../public/search-loupe.svg";
+import { Navbar } from "./Navbar";
 
 const sairaStencilOne = Saira_Stencil_One({
   weight: ["400"],
@@ -49,6 +50,8 @@ export const Header = () => {
           </Link>
         </div>
       </header>
+
+      <Navbar></Navbar>
     </div>
   );
 };
