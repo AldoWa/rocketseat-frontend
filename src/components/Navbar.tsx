@@ -14,8 +14,8 @@ export const Navbar = () => {
         <Link href={`${pathName}`}
           className={!productActive ? activeLinkClass : inactiveLinkClass}
         >Todos os produtos</Link>
-        <Link href={generateLink(pathName, 'camisetas', typeActive)} className={productActive === 'camisetas' ? activeLinkClass : inactiveLinkClass}>Camisetas</Link>
-        <Link href={generateLink(pathName, 'canecas', typeActive)} className={productActive === 'canecas' ? activeLinkClass: inactiveLinkClass}>Canecas</Link>
+        <Link href={generateLink(pathName, 't-shirts', typeActive)} className={productActive === 't-shirts' ? activeLinkClass : inactiveLinkClass}>Camisetas</Link>
+        <Link href={generateLink(pathName, 'mugs', typeActive)} className={productActive === 'mugs' ? activeLinkClass: inactiveLinkClass}>Canecas</Link>
       </div>
 
       <DropDown />
