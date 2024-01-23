@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { Header } from "@/components/Header";
 import { Navbar } from "@/components/Navbar";
+import { Pagination } from "@/components/Pagination";
 
 
 export default function Home() {
@@ -14,6 +15,13 @@ export default function Home() {
       <Header />
       <main className="container mx-auto mt-8">
         <Navbar/>
+        <div className="mt-6 mb-8 flex justify-end">
+          <Pagination
+            currentPage={1}
+            totalPages={5}
+            onPageChange={() => { return 1 }} 
+          />
+        </div>
       </main>
     </>
   );
