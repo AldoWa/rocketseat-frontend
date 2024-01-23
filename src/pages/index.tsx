@@ -12,8 +12,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-
-      <Navbar/>
+      <main className="container mx-auto mt-8">
+        <Navbar/>
+      </main>
     </>
   );
 }
