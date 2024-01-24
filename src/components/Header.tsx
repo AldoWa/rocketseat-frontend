@@ -5,6 +5,8 @@ import Link from "next/link";
 
 import Cart from "../../public/cart.svg";
 import Search from "../../public/search-loupe.svg";
+import { useContext } from "react";
+import { CartContext } from "@/context/cartContext";
 
 const sairaStencilOne = Saira_Stencil_One({
   weight: ["400"],
@@ -13,6 +15,8 @@ const sairaStencilOne = Saira_Stencil_One({
 });
 
 export const Header = () => {
+  const { cartQtd } = useContext(CartContext)
+
   return (
     <div className=" bg-white">
       <header className="container mx-auto flex items-center justify-between py-5">
@@ -34,20 +38,22 @@ export const Header = () => {
               className="absolute right-3 top-1/2 -translate-y-1/2 transform"
             ></Image>
           </div>
-          <Link href="/" title="Cart" className="relative">
+          <Link href="/cart" title="Cart" className="relative">
             <Image
               src={Cart as string}
               alt="Cart to go to the cart page"
               aria-describedby="Cart Quantity"
             ></Image>
-            <div className="absolute flex h-4 w-4 items-center justify-center rounded-full bg-[#DE3838] px-1 py-1 -right-2 top-3">
-              <span
-                id="Cart Quantity"
-                className="text-xs font-medium text-white"
-              >
-                3
-              </span>
-            </div>
+            { cartQtd > 0 &&
+              <div className="absolute flex h-4 w-4 items-center justify-center rounded-full bg-[#DE3838] px-1 py-1 -right-2 top-3">
+                <span
+                  id="Cart Quantity"
+                  className="text-xs font-medium text-white"
+                >
+                  { cartQtd }
+                </span>
+              </div>
+            }
           </Link>
         </div>
       </header>
