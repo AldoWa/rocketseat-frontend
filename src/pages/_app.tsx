@@ -1,5 +1,6 @@
 import { type AppType } from "next/app";
 
+import { Header } from "@/components/Header";
 import { api } from "@/utils/api";
 
 import { Saira } from 'next/font/google'
@@ -14,6 +15,7 @@ const saira = Saira({
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return <main className={`${saira.className}`}>
+    <Header />
     <Component {...pageProps} />
   </main>;
 };
