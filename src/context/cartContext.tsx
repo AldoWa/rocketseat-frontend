@@ -50,8 +50,9 @@ export function CartProvider({children}: CartProviderProps) {
   }, [cart])
 
   const removeItemFromCart = useCallback((id: number) => {
-    setCartQtd((cartQtd) => (cartQtd - 1))
     const newCart = cart.filter(cartItem => cartItem.id !== id)
+    const newCartQtd = newCart.reduce((acc, item) => { return acc + item.qtd }, 0)
+    setCartQtd(newCartQtd)
     setCart(() => [...newCart])
   }, [cart])
 
