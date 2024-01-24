@@ -28,9 +28,8 @@ export function CartCard({ id, name, description, price, qtd, imageUrl }: CartCa
         </div>
         <p className="text-xs	font-normal text-[#41414D] mb-6 max-w-md">{description}</p>
         <div className="flex items-center justify-between">
-          <select name="Quantity" id="quantity" className="w-16 h-10 border border-[#A8A8B3] rounded-lg	font-normal text-base text-[#737380] px-3">
+          <select name="Quantity" id="quantity" className="w-16 h-10 border border-[#A8A8B3] rounded-lg	font-normal text-base text-[#737380] px-3" disabled>
             <option value="1">1</option>
-            <option value="2">2</option>
           </select>
           <p className="text-base font-semibold text-[#09090A]">{price}</p>
         </div>
