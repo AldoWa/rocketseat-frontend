@@ -2,11 +2,12 @@ import { CartCard } from "@/components/CartCard";
 import { Sidebar } from "@/components/Sidebar";
 import { CartContext } from "@/context/cartContext";
 import transformToMoney from "@/utils/transformToMoney";
+import Head from "next/head";
 import { useContext, useEffect, useState } from "react";
 
 export default function Cart () {
-  const { cart } = useContext(CartContext)
-  const [totalItems, setTotalItems] = useState('')
+  const { cart, removeItemFromCart } = useContext(CartContext)
+  const [totalItems, setTotalItems] = useState('R$ 0,00')
   const [subTotalItems, setSubTotalItems] = useState('R$ 0,00')
 
   useEffect(() => {
@@ -19,6 +20,12 @@ export default function Cart () {
   }, [cart])
 
   return (
+    <>
+    <Head>
+      <title>Rocket Front | Carrinho</title>
+      <meta name="description" content="Carrinho de compras" />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
     <main className="flex container mx-auto mt-8 gap-x-8">
       <div className="w-full">
         <h2 className="font-medium text-2xl	text-[#41414D]">SEU CARRINHO</h2>
@@ -34,6 +41,7 @@ export default function Cart () {
                 price={`${transformToMoney(item.price)}`}
                 qtd={item.qtd}
                 key={item.id}
+                removeItemFromCart={removeItemFromCart}
               ></CartCard>
             ))
           : <li className="text-center list-none">Seu carrinho está vazio</li>}
@@ -44,5 +52,6 @@ export default function Cart () {
         totalItems={totalItems}
       />
     </main>
+    </>
   )
 }

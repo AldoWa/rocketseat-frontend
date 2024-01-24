@@ -6,17 +6,19 @@ interface CartCardProps {
   description: string;
   price: string;
   qtd: number;
-  id: number;
   imageUrl: string | StaticImageData;
+  removeItemFromCart: (id: number) => void;
+  id: number;
 }
 
 export function CartCard({
-  id,
   name,
   description,
   price,
   qtd,
   imageUrl,
+  removeItemFromCart,
+  id, 
 }: CartCardProps) {
   return (
     <li className="flex max-h-[211px] list-none rounded-lg bg-white">
@@ -30,7 +32,7 @@ export function CartCard({
       <div className="w-full px-8  py-4">
         <div className="mb-5 flex items-center justify-between">
           <h2 className="text-xl font-light text-[#41414D]">{name}</h2>
-          <button type="button">
+          <button type="button" onClick={() => removeItemFromCart(id)}>
             <Image
               src={Delete as string}
               width={24}
