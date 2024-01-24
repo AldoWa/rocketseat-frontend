@@ -13,8 +13,8 @@ export default function Home() {
 
   const { data } = api.products.getAll.useQuery({
     page: currentPage,
-    productType: productActive ? productActive : undefined,
-    sortBy: typeActive ? typeActive : undefined,
+    productType: productActive ?? undefined,
+    sortBy: typeActive ?? undefined,
   });
 
   const handleChangePage = (page: number) => {

@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import Cart from "@public/cart.svg";
 import Cup from "@public/cup@2x.png";
 
 export default function Product() {
