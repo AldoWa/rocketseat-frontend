@@ -16,9 +16,11 @@ export const Header = () => {
   return (
     <div className=" bg-white">
       <header className="container mx-auto flex items-center justify-between py-5">
-        <h1 className={`${sairaStencilOne.className} text-4xl text-[#5D5D6D]`}>
-          capputeeno
-        </h1>
+        <Link href={'/'}>
+          <h1 className={`${sairaStencilOne.className} text-4xl text-[#5D5D6D]`}>
+            capputeeno
+          </h1>
+        </Link>
         <div className="flex items-center">
           <div className="relative mr-6">
             <input
