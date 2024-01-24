@@ -6,6 +6,7 @@ import { api } from "@/utils/api";
 import { Saira } from 'next/font/google'
 
 import "@/styles/globals.css";
+import { CartProvider } from "@/context/cartContext";
 
 const saira = Saira({
   weight: ["300", "400", "500", "600"],
@@ -14,10 +15,14 @@ const saira = Saira({
 }) ;
 
 const MyApp: AppType = ({ Component, pageProps }) => {
-  return <main className={`${saira.className}`}>
-    <Header />
-    <Component {...pageProps} />
-  </main>;
+  return (
+    <CartProvider>
+      <main className={`${saira.className}`}>
+        <Header />
+        <Component {...pageProps} />
+      </main>
+    </CartProvider>
+  );
 };
 
 export default api.withTRPC(MyApp);
