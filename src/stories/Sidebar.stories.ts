@@ -18,5 +18,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Principal: Story = {};
+export const Principal: Story = {
+  args: {
+    subTotalItems: `R$ 100,00`,
+    totalItems: `R$ 140,00`,
+  }
+};
 

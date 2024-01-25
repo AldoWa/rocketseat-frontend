@@ -12,26 +12,32 @@ const INTEGRITY_CHECKSUM = '3d6b9f06410d179a7f7404d4bf4c3c70'
 const activeClientIds = new Set()
 
 self.addEventListener('install', function () {
+  // @ts-ignore
   self.skipWaiting()
 })
 
 self.addEventListener('activate', function (event) {
+  // @ts-ignore
   event.waitUntil(self.clients.claim())
 })
 
 self.addEventListener('message', async function (event) {
+  // @ts-ignore
   const clientId = event.source.id
 
+  // @ts-ignore
   if (!clientId || !self.clients) {
     return
   }
 
+  // @ts-ignore
   const client = await self.clients.get(clientId)
 
   if (!client) {
     return
   }
 
+  // @ts-ignore
   const allClients = await self.clients.matchAll({
     type: 'window',
   })
@@ -70,12 +76,14 @@ self.addEventListener('message', async function (event) {
     case 'CLIENT_CLOSED': {
       activeClientIds.delete(clientId)
 
+      // @ts-ignore
       const remainingClients = allClients.filter((client) => {
         return client.id !== clientId
       })
 
       // Unregister itself when there are no more clients
       if (remainingClients.length === 0) {
+        // @ts-ignore
         self.registration.unregister()
       }
 
@@ -85,6 +93,7 @@ self.addEventListener('message', async function (event) {
 })
 
 self.addEventListener('fetch', function (event) {
+  // @ts-ignore
   const { request } = event
   const accept = request.headers.get('accept') || ''
 
@@ -114,6 +123,7 @@ self.addEventListener('fetch', function (event) {
   // Generate unique request ID.
   const requestId = Math.random().toString(16).slice(2)
 
+  // @ts-ignore
   event.respondWith(
     handleRequest(event, requestId).catch((error) => {
       if (error.name === 'NetworkError') {
@@ -137,6 +147,7 @@ self.addEventListener('fetch', function (event) {
   )
 })
 
+// @ts-ignore
 async function handleRequest(event, requestId) {
   const client = await resolveMainClient(event)
   const response = await getResponse(event, client, requestId)
@@ -171,22 +182,27 @@ async function handleRequest(event, requestId) {
 // Client that issues a request doesn't necessarily equal the client
 // that registered the worker. It's with the latter the worker should
 // communicate with during the response resolving phase.
+// @ts-ignore
 async function resolveMainClient(event) {
+  // @ts-ignore
   const client = await self.clients.get(event.clientId)
 
   if (client?.frameType === 'top-level') {
     return client
   }
 
+  // @ts-ignore
   const allClients = await self.clients.matchAll({
     type: 'window',
   })
 
   return allClients
+    // @ts-ignore
     .filter((client) => {
       // Get only those clients that are currently visible.
       return client.visibilityState === 'visible'
     })
+    // @ts-ignore
     .find((client) => {
       // Find the client ID that's recorded in the
       // set of clients that have registered the worker.
@@ -194,6 +210,7 @@ async function resolveMainClient(event) {
     })
 }
 
+// @ts-ignore
 async function getResponse(event, client, requestId) {
   const { request } = event
   const clonedRequest = request.clone()
@@ -275,6 +292,7 @@ async function getResponse(event, client, requestId) {
   return passthrough()
 }
 
+// @ts-ignore
 function sendToClient(client, message) {
   return new Promise((resolve, reject) => {
     const channel = new MessageChannel()
@@ -291,12 +309,14 @@ function sendToClient(client, message) {
   })
 }
 
+// @ts-ignore
 function sleep(timeMs) {
   return new Promise((resolve) => {
     setTimeout(resolve, timeMs)
   })
 }
 
+// @ts-ignore
 async function respondWithMock(response) {
   await sleep(response.delay)
   return new Response(response.body, response)
